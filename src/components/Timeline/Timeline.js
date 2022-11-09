@@ -13,12 +13,12 @@ function Timeline() {
 
   const { page, setPage, searchValue, searching, sortOrder } = useContext(ArticlesContext);
 
-  async function getNews() {
+  async function getNews(sortOrderChanged) {
     setIsLoading(true);
     try {
-      if(page === 0) {
+      if(page === 0 || sortOrderChanged) {
         setnoMoreNews(false);
-        const response = await requests.getNews(page, sortOrder, searchValue);
+        const response = await requests.getNews(0, sortOrder, searchValue);
         setArticles(response.data);
       } else {
         const response = await requests.getNews(page, sortOrder, searchValue);
@@ -32,9 +32,12 @@ function Timeline() {
   }
 
   useEffect(() => {
-    getNews();
-  }, [searching, page, sortOrder]);
-  console.log(page);
+    getNews(false);
+  }, [searching, page]);
+
+  useEffect(() => {
+    getNews(true);
+  }, [sortOrder]);
 
   return (
     <Container>
