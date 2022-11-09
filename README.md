@@ -1,7 +1,7 @@
 # Space Flight News, a Coodesh challenge
 
 ## Description
-This is the front-end part of the challenge, it desplays space flight news articles.
+This is the front-end part of the challenge, it displays space flight news articles.
 
 ## Stacks and Technologies
 - JavaScript
